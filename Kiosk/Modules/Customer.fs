@@ -1,19 +1,27 @@
-﻿namespace Kiosk
+﻿namespace Kiosk.Modules
 
-type Mood =
-    | Good
-    | Bad
-
-type Customer =
-    { Name: string
-      Mood: Mood
-      Order: Order }
+open Kiosk.Types
+open Product
 
 module Customer =
-    let getCoffeeWithAdditives () =
+    let coffeeWithAdditives =
         { Name = Coffee
           Additives = [ CoffeeAdditive Milk; CoffeeAdditive Sugar ] }
 
-    let getHotdogWithAdditives () =
+    let hotdogWithAdditives =
         { Name = Hotdog
           Additives = [ HotdogAdditive Ketchup; HotdogAdditive Mustard ] }
+
+    let makeOrder customer line =
+        match customer.Mood with
+        | Good -> 
+            printfn "<:)"
+            printfn "/||\\"
+            printfn " /\\"
+        | Bad -> 
+            printfn ">:("
+            printfn "/||\\+--"
+            printfn " /\\"
+
+        printfn line
+        prepareOrder customer.Orders

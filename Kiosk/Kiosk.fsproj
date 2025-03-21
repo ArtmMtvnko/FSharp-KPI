@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Types\ProductTypes.fs" />
+    <Compile Include="Types\CustomerTypes.fs" />
+    <Compile Include="Modules\Kiosk.fs" />
     <Compile Include="Modules\Product.fs" />
     <Compile Include="Modules\Customer.fs" />
     <Compile Include="Program.fs" />

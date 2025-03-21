@@ -1,60 +1,36 @@
-﻿namespace Kiosk
+﻿namespace Kiosk.Modules
 
-type Additives =
-    | CoffeeAdditive of CoffeeAdditive
-    | HotdogAdditive of HotdogAdditive
-    | BurgerAdditive of BurgerAdditive
-    | None
-
-and CoffeeAdditive =
-    | Milk
-    | Sugar
-    | Syrup
-
-and HotdogAdditive =
-    | Ketchup
-    | Mustard
-    | Mayonnaise
-
-and BurgerAdditive =
-    | Cheese
-    | Lettuce
-    | Mushrooms
-    | Onions
-
-type ProductName =
-    | Coffee
-    | Hotdog
-    | Burger
-
-type Product =
-    { Name: ProductName
-      Ingredients: string list
-      Additives: Additives list }
-
-type Order =
-    { Name: ProductName
-      Additives: Additives list }
+open Kiosk.Types
+open Kiosk
 
 module Product =
     let createCoffee additives =
         { Name = Coffee
-          Ingredients = [ "Water"; "Coffee" ]
+          Ingredients = [ CoffeeIngredient Water; CoffeeIngredient CoffeeBeans ]
           Additives = additives }
 
     let createHotdog additives =
         { Name = Hotdog
-          Ingredients = [ "Bread"; "Sausage" ]
+          Ingredients = [ HotdogIngredient Bread; HotdogIngredient Sausage ]
           Additives = additives }
 
     let createBurger additives =
         { Name = Burger
-          Ingredients = [ "Bread"; "Patty" ]
+          Ingredients = [ BurgerIngredient Buns; BurgerIngredient Patty ]
           Additives = additives }
 
-    let makeOrder (orders: Order list) = 
+    let prepareOrder (orders: Order list) = 
         for order in orders do
             match order.Name with
-            | Coffee -> printfn "Here is your coffee: \n %A" <| createCoffee order.Additives
-            | Hotdog -> printfn "Here is your hotdog: \n %A" <| createHotdog order.Additives
-            | Burger -> printfn "Here is your burger: \n %A" <| createBurger order.Additives
+            | Coffee -> 
+                let coffee = createCoffee order.Additives
+                let price = calculatePrice coffee
+                printfn "Here is your coffee: \n%A \nIt's %A dollars \n" coffee price
+            | Hotdog -> 
+                let hotdog = createHotdog order.Additives
+                let price = calculatePrice hotdog
+                printfn "Here is your hotdog: \n%A \nIt's %A dollars \n" hotdog price
+            | Burger -> 
+                let burger = createBurger order.Additives
+                let price = calculatePrice burger
+                printfn "Here is your burger: \n%A \nIt's %A dollars \n" burger price
