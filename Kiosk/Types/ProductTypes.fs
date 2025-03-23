@@ -49,4 +49,3 @@ type Product =
     { Name: ProductName
       Ingredients: Ingredient list
       Additives: Additives list }
-
