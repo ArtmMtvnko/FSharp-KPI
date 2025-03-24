@@ -3,14 +3,22 @@
 open Kiosk.Types
 
 module CoffeeMaker =
-    let basicCoffee: Product =
+    let basicCoffee =
         { Name = ProductName.Coffee
-          Ingredients = []
+          Ingredients = [CoffeeIngredient Water; CoffeeIngredient CoffeeBeans]
           Additives = [] }
 
     let isAdditiveAdded additive (coffee: Product) =
         List.exists (fun a -> a = additive) coffee.Additives
 
+    let addAdditive additive (coffee: Product) =
+        if isAdditiveAdded additive coffee
+        then 
+            printfn "You already added the additive"
+            coffee
+        else
+            printfn "You added %A" additive
+            { coffee with Additives = additive :: coffee.Additives }
 
     let addSugar product: Product =
         { product with Additives = CoffeeAdditive Sugar :: product.Additives }
@@ -32,32 +40,26 @@ module CoffeeMaker =
         for (key, value) in options do
             printfn "\t%d. %s" key value
 
-        printfn "Current coffee: %A" coffee
+        printfn "Current coffee:\n%A\n" coffee
 
         let input = System.Console.ReadLine()
-        let option = if input = "" then -1 else input |> int
+        let (valid, number) = System.Int32.TryParse input
+        let option = if valid then number else -1
         
         match option with
         | 1 ->
-            let omniCoffee = coffee |> addSugar |> addMilk |> addSyrup
+            let omniCoffee: Product =
+                { coffee with Additives = [ CoffeeAdditive Sugar; CoffeeAdditive Milk; CoffeeAdditive Syrup ] }
             printfn "You added everything in a cup of coffee"
             startCoffeeMakerMenu omniCoffee
         | 2 ->
-            let coffeeWithSugar =
-                if isAdditiveAdded (CoffeeAdditive Sugar) coffee
-                then
-                    printfn "You added sugar to the coffee"
-                    coffee
-                else addSugar coffee
-
+            let coffeeWithSugar = addAdditive (CoffeeAdditive Sugar) coffee
             startCoffeeMakerMenu coffeeWithSugar
         | 3 ->
-            let coffeeWithMilk = addMilk coffee
-            printfn "You added milk to the coffee"
+            let coffeeWithMilk = addAdditive (CoffeeAdditive Milk) coffee
             startCoffeeMakerMenu coffeeWithMilk
         | 4 ->
-            let coffeeWithSyrup = addSyrup coffee
-            printfn "You added syrup to the coffee"
+            let coffeeWithSyrup = addAdditive (CoffeeAdditive Syrup) coffee
             startCoffeeMakerMenu coffeeWithSyrup
         | 0 -> 
             coffee

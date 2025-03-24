@@ -1,6 +1,8 @@
 ﻿namespace CLI
 
 open CoffeeMaker
+open HotdogMaker
+open BurgerMaker
 
 module MainMenu =
     let rec startMainMenu () =
@@ -20,6 +22,12 @@ module MainMenu =
         | 1 ->
             printfn "You picked Coffee"
             startCoffeeMakerMenu CoffeeMaker.basicCoffee
-        | _ -> 
+        | 2 ->
+            printfn "You picked Coffee"
+            startHotdogMakerMenu HotdogMaker.basicHotdog
+        | 3 ->
+            printfn "You picked Burger"
+            startBurgerMakerMenu BurgerMaker.basicBurger
+        | _ ->
             printfn "Invalid option"
             startMainMenu ()

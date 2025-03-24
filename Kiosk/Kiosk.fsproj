@@ -11,6 +11,8 @@
     <Compile Include="Modules\Kiosk.fs" />
     <Compile Include="Modules\Product.fs" />
     <Compile Include="Modules\Customer.fs" />
+    <Compile Include="CLI\BurgerMaker.fs" />
+    <Compile Include="CLI\HotdogMaker.fs" />
     <Compile Include="CLI\CoffeeMaker.fs" />
     <Compile Include="CLI\MainMenu.fs" />
     <Compile Include="Program.fs" />
