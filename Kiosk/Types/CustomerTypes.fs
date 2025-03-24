@@ -11,4 +11,4 @@ type Order =
 type Customer =
     { Name: string
       Mood: Mood
-      Orders: Order list }
+      Order: Order }

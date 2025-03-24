@@ -4,7 +4,6 @@ type Additives =
     | CoffeeAdditive of CoffeeAdditive
     | HotdogAdditive of HotdogAdditive
     | BurgerAdditive of BurgerAdditive
-    | None
 
 and CoffeeAdditive =
     | Milk

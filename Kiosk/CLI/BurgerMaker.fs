@@ -20,12 +20,6 @@ module BurgerMaker =
             printfn "You added %A" additive
             { burger with Additives = additive :: burger.Additives }
 
-    let addCheese product: Product =
-        { product with Additives = BurgerAdditive Cheese :: product.Additives }
-
-    let addLettuce product: Product =
-        { product with Additives = BurgerAdditive Lettuce :: product.Additives }
-
     let rec startBurgerMakerMenu burger =
         let options =
             [ (1, "All at once")
@@ -33,7 +27,9 @@ module BurgerMaker =
               (3, "Add lettuce")
               (4, "Add mushrooms")
               (5, "Add onions")
-              (0, "Back") ]
+              (0, "Done") ]
+
+        printfn "\nPick which addivite you are going to add:"
 
         for (key, value) in options do
             printfn "\t%d. %s" key value

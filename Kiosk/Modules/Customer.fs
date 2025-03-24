@@ -4,15 +4,10 @@ open Kiosk.Types
 open Product
 
 module Customer =
-    let coffeeWithAdditives =
-        { Name = Coffee
-          Additives = [ CoffeeAdditive Milk; CoffeeAdditive Sugar ] }
+    let printGap () =
+        printfn "\n\n\n\n"
 
-    let hotdogWithAdditives =
-        { Name = Hotdog
-          Additives = [ HotdogAdditive Ketchup; HotdogAdditive Mustard ] }
-
-    let makeOrder customer line =
+    let printCustomer customer =
         match customer.Mood with
         | Good -> 
             printfn "<:)"
@@ -23,5 +18,28 @@ module Customer =
             printfn "/||\\+--"
             printfn " /\\"
 
-        printfn line
-        prepareOrder customer.Orders
+    let makeOrder customer line =
+        printfn "%s" line
+
+        let product, price = prepareOrder customer.Order
+
+        let order = customer.Order
+
+        if order.Name <> product.Name
+        then
+            printfn "It is not what I ordered!"
+            printCustomer { customer with Mood = Bad }
+            printGap ()
+            0.0
+        else
+            if Set.ofList order.Additives <> Set.ofList product.Additives
+            then
+                printfn "It is not what I ordered!"
+                printCustomer { customer with Mood = Bad }
+                printGap ()
+                0.0
+            else
+                printfn "Thank you for your order! \n"
+                printCustomer { customer with Mood = Good }
+                printGap ()
+                price

@@ -3,31 +3,40 @@
 open CoffeeMaker
 open HotdogMaker
 open BurgerMaker
+open Kiosk.Types
 
 module MainMenu =
-    let rec startMainMenu () =
+    let rec makeProduct (product: Product) =
         let options =
             [ (1, "Coffee")
               (2, "Hotdog")
-              (3, "Burger") ]
+              (3, "Burger")
+              (0, "Done") ]
         
-        printfn "Pick which one you are going to make:"
+        printfn "\nPick which one you are going to make:"
 
         for (key, value) in options do
             printfn "\t%d. %s" key value
 
-        let input = System.Console.ReadLine() |> int
+        let input = System.Console.ReadLine()
+        let (valid, number) = System.Int32.TryParse input
+        let option = if valid then number else -1
 
-        match input with
+        match option with
         | 1 ->
             printfn "You picked Coffee"
-            startCoffeeMakerMenu CoffeeMaker.basicCoffee
+            let coffee = startCoffeeMakerMenu CoffeeMaker.basicCoffee
+            makeProduct coffee
         | 2 ->
             printfn "You picked Coffee"
-            startHotdogMakerMenu HotdogMaker.basicHotdog
+            let hotdog = startHotdogMakerMenu HotdogMaker.basicHotdog
+            makeProduct hotdog
         | 3 ->
             printfn "You picked Burger"
-            startBurgerMakerMenu BurgerMaker.basicBurger
+            let burger = startBurgerMakerMenu BurgerMaker.basicBurger
+            makeProduct burger
+        | 0 ->
+            product
         | _ ->
             printfn "Invalid option"
-            startMainMenu ()
+            makeProduct product

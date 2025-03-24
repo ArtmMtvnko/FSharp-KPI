@@ -20,18 +20,14 @@ module HotdogMaker =
             printfn "You added %A" additive
             { hotdog with Additives = additive :: hotdog.Additives }
 
-    let addKetchup product: Product =
-        { product with Additives = HotdogAdditive Ketchup :: product.Additives }
-
-    let addMustard product: Product =
-        { product with Additives = HotdogAdditive Mustard :: product.Additives }
-
     let rec startHotdogMakerMenu hotdog =
         let options =
             [ (1, "All at once")
               (2, "Add ketchup")
               (3, "Add mustard")
-              (0, "Back") ]
+              (0, "Done") ]
+
+        printfn "\nPick which addivite you are going to add:"
 
         for (key, value) in options do
             printfn "\t%d. %s" key value

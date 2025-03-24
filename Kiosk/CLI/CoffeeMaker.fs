@@ -20,22 +20,15 @@ module CoffeeMaker =
             printfn "You added %A" additive
             { coffee with Additives = additive :: coffee.Additives }
 
-    let addSugar product: Product =
-        { product with Additives = CoffeeAdditive Sugar :: product.Additives }
-
-    let addMilk product: Product =
-        { product with Additives = CoffeeAdditive Milk :: product.Additives }
-
-    let addSyrup product: Product =
-        { product with Additives = CoffeeAdditive Syrup :: product.Additives }
-
     let rec startCoffeeMakerMenu coffee =
         let options =
             [ (1, "All at once")
               (2, "Add sugar")
               (3, "Add milk")
               (4, "Add syrup")
-              (0, "Back") ]
+              (0, "Done") ]
+
+        printfn "\nPick which addivite you are going to add:"
 
         for (key, value) in options do
             printfn "\t%d. %s" key value

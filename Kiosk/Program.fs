@@ -1,32 +1,27 @@
 ﻿open Kiosk.Modules
 open Kiosk.Types
 open Customer
-open CLI.MainMenu
 
 [<EntryPoint>]
 let main args =
-    //let a: int list = [ 1; 2; 3 ]
-    //let b: int array = [| 1; 2; 3 |]
-
-    startMainMenu () |> ignore
-
     let customer1 =
         { Name = "John"
           Mood = Good
-          Orders =
-            [ { Name = Burger
-                Additives = [ BurgerAdditive Cheese ; BurgerAdditive Mushrooms ] }
-              { Name = Hotdog
-                Additives = [ HotdogAdditive Ketchup; HotdogAdditive Mustard ] } ] }
+          Order =
+            { Name = Burger
+              Additives = [ BurgerAdditive Cheese; BurgerAdditive Mushrooms ] } }
 
     let customer2 =
         { Name = "Smith"
           Mood = Bad
-          Orders = 
-            [ { Name = Coffee
-                Additives = [ CoffeeAdditive Milk; CoffeeAdditive Sugar ] } ] }
+          Order =
+            { Name = Coffee
+              Additives = [ CoffeeAdditive Milk; CoffeeAdditive Sugar ] } }
 
-    makeOrder customer1 "Hi! Can I get a burger and a hotdog? \n"
-    makeOrder customer2 "Gimme that goddamn coffee! And make it as fast as that dude sonic \n"
+    let performCustomer1Replica = makeOrder customer1
+    let performCustomer2Replica = makeOrder customer2
+
+    performCustomer1Replica "Hi! Can I get a burger? Also could you put some cheese and mushrooms?" |> ignore
+    performCustomer2Replica "Gimme that coffee man! And I wanna see some milk and sugar there" |> ignore
 
     0
