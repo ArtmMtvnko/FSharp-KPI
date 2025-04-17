@@ -28,7 +28,7 @@ module MainMenu =
             let coffee = startCoffeeMakerMenu CoffeeMaker.basicCoffee
             makeProduct coffee
         | 2 ->
-            printfn "You picked Coffee"
+            printfn "You picked Hotdog"
             let hotdog = startHotdogMakerMenu HotdogMaker.basicHotdog
             makeProduct hotdog
         | 3 ->

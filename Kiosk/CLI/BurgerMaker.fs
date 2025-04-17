@@ -1,24 +1,13 @@
 ﻿namespace CLI
 
 open Kiosk.Types
+open Kiosk.Modules.Additives
 
 module BurgerMaker =
     let basicBurger =
         { Name = ProductName.Burger
           Ingredients = [BurgerIngredient Buns; BurgerIngredient Patty]
           Additives = [] }
-
-    let isAdditiveAdded additive (burger: Product) =
-        List.exists (fun a -> a = additive) burger.Additives
-
-    let addAdditive additive (burger: Product) =
-        if isAdditiveAdded additive burger
-        then 
-            printfn "You already added the additive"
-            burger
-        else
-            printfn "You added %A" additive
-            { burger with Additives = additive :: burger.Additives }
 
     let rec startBurgerMakerMenu burger =
         let options =

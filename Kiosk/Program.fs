@@ -5,14 +5,16 @@ open Customer
 [<EntryPoint>]
 let main args =
     let customer1 =
-        { Name = "John"
+        { Id = 123321
+          Name = "John"
           Mood = Good
           Order =
             { Name = Burger
               Additives = [ BurgerAdditive Cheese; BurgerAdditive Mushrooms ] } }
 
     let customer2 =
-        { Name = "Smith"
+        { Id = "asdf123"
+          Name = "Smith"
           Mood = Bad
           Order =
             { Name = Coffee

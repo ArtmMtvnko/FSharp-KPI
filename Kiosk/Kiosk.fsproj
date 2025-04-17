@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Storage\BlackList.fs" />
     <Compile Include="Types\ProductTypes.fs" />
     <Compile Include="Types\CustomerTypes.fs" />
+    <Compile Include="Modules\Additives.fs" />
     <Compile Include="CLI\BurgerMaker.fs" />
     <Compile Include="CLI\HotdogMaker.fs" />
     <Compile Include="CLI\CoffeeMaker.fs" />

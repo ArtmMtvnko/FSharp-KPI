@@ -8,7 +8,8 @@ type Order =
     { Name: ProductName
       Additives: Additives list }
 
-type Customer =
-    { Name: string
+type Customer<'Id when 'Id : equality> =
+    { Id: 'Id
+      Name: string
       Mood: Mood
       Order: Order }
