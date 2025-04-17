@@ -2,6 +2,7 @@
 
 open Kiosk.Types
 open Kiosk.Modules.Additives
+open Kiosk.Modules.Utils
 
 module BurgerMaker =
     let basicBurger =
@@ -9,7 +10,7 @@ module BurgerMaker =
           Ingredients = [BurgerIngredient Buns; BurgerIngredient Patty]
           Additives = [] }
 
-    let rec startBurgerMakerMenu burger =
+    let rec startBurgerMakerMenu (burger: Product) =
         let options =
             [ (1, "All at once")
               (2, "Add cheese")
@@ -23,8 +24,10 @@ module BurgerMaker =
         for (key, value) in options do
             printfn "\t%d. %s" key value
 
-        printfn "Current burger:\n%A\n" burger
+        printfn "Added addivites:"
+        printList burger.Additives
 
+        printf "\nEnter the number: "
         let input = System.Console.ReadLine()
         let (valid, number) = System.Int32.TryParse input
         let option = if valid then number else -1

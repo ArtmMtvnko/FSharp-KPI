@@ -2,6 +2,7 @@
 
 open Kiosk.Types
 open Kiosk.Modules.Additives
+open Kiosk.Modules.Utils
 
 module CoffeeMaker =
     let basicCoffee =
@@ -9,7 +10,7 @@ module CoffeeMaker =
           Ingredients = [CoffeeIngredient Water; CoffeeIngredient CoffeeBeans]
           Additives = [] }
 
-    let rec startCoffeeMakerMenu coffee =
+    let rec startCoffeeMakerMenu (coffee: Product) =
         let options =
             [ (1, "All at once")
               (2, "Add sugar")
@@ -22,8 +23,10 @@ module CoffeeMaker =
         for (key, value) in options do
             printfn "\t%d. %s" key value
 
-        printfn "Current coffee:\n%A\n" coffee
+        printfn "Added addivites:"
+        printList coffee.Additives
 
+        printf "\nEnter the number: "
         let input = System.Console.ReadLine()
         let (valid, number) = System.Int32.TryParse input
         let option = if valid then number else -1

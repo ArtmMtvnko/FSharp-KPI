@@ -18,6 +18,7 @@ module MainMenu =
         for (key, value) in options do
             printfn "\t%d. %s" key value
 
+        printf "\nEnter the number: "
         let input = System.Console.ReadLine()
         let (valid, number) = System.Int32.TryParse input
         let option = if valid then number else -1

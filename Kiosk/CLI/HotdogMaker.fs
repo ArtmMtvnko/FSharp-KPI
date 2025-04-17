@@ -2,6 +2,7 @@
 
 open Kiosk.Types
 open Kiosk.Modules.Additives
+open Kiosk.Modules.Utils
 
 module HotdogMaker =
     let basicHotdog =
@@ -9,7 +10,7 @@ module HotdogMaker =
           Ingredients = [HotdogIngredient Bread; HotdogIngredient Sausage]
           Additives = [] }
 
-    let rec startHotdogMakerMenu hotdog =
+    let rec startHotdogMakerMenu (hotdog: Product) =
         let options =
             [ (1, "All at once")
               (2, "Add ketchup")
@@ -21,8 +22,10 @@ module HotdogMaker =
         for (key, value) in options do
             printfn "\t%d. %s" key value
 
-        printfn "Current hotdog:\n%A\n" hotdog
+        printfn "Added addivites:"
+        printList hotdog.Additives
 
+        printf "\nEnter the number: "
         let input = System.Console.ReadLine()
         let (valid, number) = System.Int32.TryParse input
         let option = if valid then number else -1
