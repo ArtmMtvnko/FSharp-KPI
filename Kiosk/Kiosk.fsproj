@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Include="Types\ProductTypes.fs" />
     <Compile Include="Types\CustomerTypes.fs" />
+    <Compile Include="Modules\Accounting.fs" />
     <Compile Include="Modules\Utils.fs" />
     <Compile Include="Modules\Additives.fs" />
     <Compile Include="CLI\BurgerMaker.fs" />
