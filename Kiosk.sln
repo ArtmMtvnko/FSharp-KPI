@@ -7,6 +7,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kiosk", "Kiosk\Kiosk.fsproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kiosk_CS", "Kiosk_CS\Kiosk_CS.csproj", "{B2C138E4-4EF9-48EF-8F1E-016B340904C2}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Data_Provider_Lab_4", "Data_Provider_Lab_4\Data_Provider_Lab_4.fsproj", "{5454792B-9E7C-4D4B-87AE-466029490C2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B2C138E4-4EF9-48EF-8F1E-016B340904C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2C138E4-4EF9-48EF-8F1E-016B340904C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2C138E4-4EF9-48EF-8F1E-016B340904C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5454792B-9E7C-4D4B-87AE-466029490C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5454792B-9E7C-4D4B-87AE-466029490C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5454792B-9E7C-4D4B-87AE-466029490C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5454792B-9E7C-4D4B-87AE-466029490C2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
