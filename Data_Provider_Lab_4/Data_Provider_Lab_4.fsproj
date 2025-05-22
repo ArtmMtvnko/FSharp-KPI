@@ -6,14 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<Compile Include="Data\output.json" />
-	<Compile Include="Data\DataScience_salaries_2025.json" />
+	<Content Include="Data\output.json" />
+	<Content Include="Data\DataScience_salaries_2025.json" />
+	<Content Include="Main.fsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Types.fs" />
-    <Compile Include="Main.fsx" />
     <Compile Include="Modules\DataEditor.fs" />
     <Compile Include="Modules\DataLoader.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="6.6.0" />

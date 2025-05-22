@@ -1,5 +1,4 @@
-﻿(*
-#r "nuget: FSharp.Data"
+﻿#r "nuget: FSharp.Data"
 #r "nuget: XPlot.Plotly"
 
 open FSharp.Data  
@@ -107,4 +106,3 @@ let avgSalaryPerYearBarChart =
   expLevelBarChart
   avgSalaryPerYearBarChart ]
 |> Chart.ShowAll
-*)

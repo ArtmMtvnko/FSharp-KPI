@@ -34,6 +34,7 @@ let getGroupedBarChart (data: (string * (int * int) array) array) =
     |> Chart.Plot
     |> Chart.WithLayout (Layout(barmode = "group"))
 
+
 let drawAllBarCharts charts =
     charts |> Chart.ShowAll
 
