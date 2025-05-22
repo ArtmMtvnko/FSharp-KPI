@@ -57,7 +57,7 @@ let getExpLevelCount (dataset: DataScienceSalary.Root array) =
     |> Array.map (fun (lvl, array) -> (lvl, array.Length))
 
 
-let getAvgJobSalaryPerYear (dataset: DataScienceSalary.Root array) desiredJobs =
+let getAvgJobSalaryPerYear desiredJobs (dataset: DataScienceSalary.Root array) =
     let jobsToCheck = Set.ofSeq desiredJobs
 
     dataset

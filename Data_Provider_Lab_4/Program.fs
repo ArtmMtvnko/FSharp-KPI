@@ -1,6 +1,5 @@
 ﻿module Program
 
-open FSharp.Data
 open DataLoader
 open DataEditor
 open Types
@@ -16,24 +15,35 @@ let main args =
         printfn "%s" msg
         1
     | Ok filePath ->
-        let wholeDataset = DataScienceSalary.Load(filePath)
-        let dataset = wholeDataset |> selectWithStep 1000
+        let asyncGetDataset = async {
+            let! wholeDataset = DataScienceSalary.AsyncLoad(filePath)
+            return wholeDataset |> selectWithStep 1000
+        }
 
-        let salaryProcessedData = getSeleryProcessedData dataset
-        let expLevelCountData = getExpLevelCount dataset
-        let avgJobSalaryPerYearData = getAvgJobSalaryPerYear dataset [
-            "Software Engineer"; "Data Scientist";
-            "Data Analyst"; "Machine Learning Engineer"
+        let dataset = asyncGetDataset |> Async.RunSynchronously
+
+        let dataProcessFunctions = [
+            getSeleryProcessedData
+            getExpLevelCount
         ]
 
-        let salaryBarChart = salaryProcessedData |> getBarChart "Salary Bar Chart"
-        let expLevelBarChart = expLevelCountData |> getBarChart "Experiense Level Bar Chart"
-        let avgJobSalaryBarChart = avgJobSalaryPerYearData |> getGroupedBarChart
+        let avgSalary = getAvgJobSalaryPerYear [ "Software Engineer"; "Data Scientist"; "Data Analyst"; "Machine Learning Engineer" ]
 
-        [ salaryBarChart
-          expLevelBarChart
-          avgJobSalaryBarChart ]
-        |> drawAllBarCharts
+        let results = 
+            dataProcessFunctions
+            |> List.map (fun fn -> async { return fn dataset })
+            |> Async.Parallel
+            |> Async.RunSynchronously
+
+        let simpleBarCharts = 
+            results
+            |> Array.map (getBarChart "Simple Bar Chart")
+            |> Array.toList
+
+        let barCharts =
+            (dataset |> avgSalary |> getGroupedBarChart) :: simpleBarCharts
+
+        barCharts |> drawAllBarCharts
 
         0
 
