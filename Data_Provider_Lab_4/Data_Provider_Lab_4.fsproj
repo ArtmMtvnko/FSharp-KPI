@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<Compile Include="Data\output.json" />
+	<Compile Include="Data\DataScience_salaries_2025.json" />
     <Compile Include="Types.fs" />
     <Compile Include="Main.fsx" />
     <Compile Include="Modules\DataEditor.fs" />
