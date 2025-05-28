@@ -17,7 +17,7 @@ let main args =
     | Ok filePath ->
         let asyncGetDataset = async {
             let! wholeDataset = DataScienceSalary.AsyncLoad(filePath)
-            return wholeDataset |> selectWithStep 1000
+            return wholeDataset |> selectWithStep 10
         }
 
         let dataset = asyncGetDataset |> Async.RunSynchronously
